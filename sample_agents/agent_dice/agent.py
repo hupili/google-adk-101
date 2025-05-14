@@ -112,3 +112,5 @@ dice_game = LoopAgent(
     description="A dice game that player 1, player 2 and judge take turns to act.",
     sub_agents=[player1, player2, judge],
 )
+
+root_agent = dice_game

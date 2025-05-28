@@ -2,8 +2,9 @@
 
 - CoLab to walk through basic concepts
 - Off the shelf sample agents for quick experimentation
-- [Upcoming] A2A Samples
-- [Upcoming] Agent Engine deployment samples
-- [Upcoming] Agentspace integration samples
-- [Upcoming] Working with MCP
-- [Upcoming] Meta Agent
+## Wishlist
+- A2A Samples
+- Agent Engine deployment samples
+- Agentspace integration samples
+- Working with MCP
+- Meta Agent

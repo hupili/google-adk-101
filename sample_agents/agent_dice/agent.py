@@ -9,7 +9,7 @@ from google.adk.agents.loop_agent import LoopAgent
 from google.adk.tools.tool_context import ToolContext
 from typing import Tuple
 
-MODEL = "gemini-2.0-flash-001"
+MODEL = "gemini-2.0-flash"
 
 def exit_loop(tool_context: ToolContext):
   tool_context.actions.escalate = True

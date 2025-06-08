@@ -1,0 +1,7 @@
+#!/bin/bash
+# Usage: source ./conf.sh
+
+export GOOGLE_CLOUD_PROJECT=PROJECT_ID
+export GOOGLE_CLOUD_LOCATION=LOCATION
+export GOOGLE_GENAI_USE_VERTEXAI=TRUE
+

@@ -24,9 +24,40 @@ Notebooks:
 
 ```mermaid
 graph TD
-    A[Setup Environment] --> B[Install Dependencies];
-    B[Install Dependencies] --> C[Build Project];
-    C[Build Project] --> D[Run Tests];
-    D[Run Tests] --> E[Deploy Application];
+    subgraph "Start Here"
+        A[QuickStart.ipynb]
+    end
+
+    subgraph "Sample Developer"
+        B[ADK_CoLab_Boilerplate.ipynb]
+    end
+
+    subgraph "Using Tools"
+        C[Web_request_tool.ipynb]
+        D[Artifacts_service.ipynb]
+        E[GenMedia.ipynb]
+    end
+
+    subgraph "Agent to Agent Communication"
+        F[Builtin_A2A.ipynb]
+        G[MCP_Barehand_JSON_RPC.ipynb]
+    end
+
+    subgraph "Advanced Topics"
+        H[Build_Deep_Research.ipynb]
+        I[Deploy_to_Agent_Engine.ipynb]
+        J[Agentspace_integration.ipynb]
+    end
+
+    A --> C;
+    A --> D;
+    A --> E;
+    C --> F;
+    D --> F;
+    E --> F;
+    F --> G;
+    G --> H;
+    H --> I;
+    I --> J;
 ```
 

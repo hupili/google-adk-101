@@ -19,3 +19,14 @@ Notebooks:
 - Agentspace integration samples
 - Working with MCP
 - Meta Agent
+
+## Learning paths
+
+```mermaid
+graph TD
+    A[Setup Environment] --> B[Install Dependencies];
+    B[Install Dependencies] --> C[Build Project];
+    C[Build Project] --> D[Run Tests];
+    D[Run Tests] --> E[Deploy Application];
+```
+

@@ -32,32 +32,33 @@ graph TD
         B[ADK_CoLab_Boilerplate.ipynb]
     end
 
+    subgraph "Applications"
+        H[Build_Deep_Research.ipynb]
+    end
+
     subgraph "Using Tools"
         C[Web_request_tool.ipynb]
         D[Artifacts_service.ipynb]
         E[GenMedia.ipynb]
     end
 
-    subgraph "Agent to Agent Communication"
+    subgraph "Communications"
         F[Builtin_A2A.ipynb]
         G[MCP_Barehand_JSON_RPC.ipynb]
     end
 
-    subgraph "Advanced Topics"
-        H[Build_Deep_Research.ipynb]
+    subgraph "Deployment"
         I[Deploy_to_Agent_Engine.ipynb]
         J[Agentspace_integration.ipynb]
     end
 
+    A --> H;
     A --> C;
-    A --> D;
-    A --> E;
-    C --> F;
-    D --> F;
-    E --> F;
-    F --> G;
-    G --> H;
-    H --> I;
+    A --> F;
+    A --> G;
+    A --> I;
+    C --> D;
+    D --> E;
     I --> J;
 ```
 

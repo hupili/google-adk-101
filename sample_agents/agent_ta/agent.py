@@ -1,36 +1,34 @@
-import random
 from google.adk.agents import Agent
-from google.adk.artifacts import InMemoryArtifactService
-from google.adk.runners import Runner
-from google.adk.sessions import InMemorySessionService
 from google.genai import types
-from google.adk.agents.sequential_agent import SequentialAgent
 from google.adk.agents.loop_agent import LoopAgent
 from google.adk.tools.agent_tool import AgentTool
 from google.adk.tools.tool_context import ToolContext
-from typing import Tuple
 
 from typing import List
 from pydantic import BaseModel, Field
-from google.genai import types
 
 json_response_config = types.GenerateContentConfig(
-  response_mime_type="application/json",
+    response_mime_type="application/json",
 )
+
 
 class OutputSchema(BaseModel):
     original_query: str = Field(description="The original text from user.")
     corrected_text: str = Field(description="The corrected text.")
     errors: List[str] = Field(description="An array of descriptions of each error.")
-    explanations: List[str] = Field(description="An array of explanations for each correction.")
+    explanations: List[str] = Field(
+        description="An array of explanations for each correction."
+    )
+
 
 json_schema = OutputSchema.model_json_schema()
 json_schema
 
-MODEL = 'gemini-2.0-flash'
+MODEL = "gemini-2.0-flash"
+
 
 def add(numbers: list[int]) -> int:
-  """Calculates the sum of a list of integers.
+    """Calculates the sum of a list of integers.
 
     This function takes a list of integers as input and returns the sum of all
     the elements in the list.  It uses the built-in `sum()` function for
@@ -48,7 +46,8 @@ def add(numbers: list[int]) -> int:
         add([-1, 0, 1]) == 0
         add([]) == 0
     """
-  return sum(numbers)
+    return sum(numbers)
+
 
 def subtract(numbers: list[int]) -> int:
     """Subtracts numbers in a list sequentially from left to right.
@@ -75,8 +74,9 @@ def subtract(numbers: list[int]) -> int:
         result -= num
     return result
 
+
 def multiply(numbers: list[int]) -> int:
-  """Calculates the product of a list of integers.
+    """Calculates the product of a list of integers.
 
     This function takes a list of integers as input and returns the product of all
     the elements in the list. It iterates through the list, multiplying each
@@ -94,10 +94,11 @@ def multiply(numbers: list[int]) -> int:
         multiply([1, -2, 5]) == -10 # 1 * -2 * 5 = -10
         multiply([]) == 1
     """
-  product = 1
-  for num in numbers:
-    product *= num
-  return product
+    product = 1
+    for num in numbers:
+        product *= num
+    return product
+
 
 def divide(numbers: list[int]) -> float:  # Use float for division
     """Divides numbers in a list sequentially from left to right.
@@ -127,17 +128,18 @@ def divide(numbers: list[int]) -> float:  # Use float for division
         divide([]) == 0.0
     """
     if not numbers:
-        return 0.0 # Handle empty list
-    if 0 in numbers[1:]: # Check for division by zero
+        return 0.0  # Handle empty list
+    if 0 in numbers[1:]:  # Check for division by zero
         raise ZeroDivisionError("Cannot divide by zero.")
     result = numbers[0]
     for num in numbers[1:]:
         result /= num
     return result
 
+
 agent_grammar = Agent(
     model=MODEL,
-    name='agent_grammar',
+    name="agent_grammar",
     description="This agent corrects grammar mistakes in text provided by children, explains the errors in simple terms, and returns both the corrected text and the explanations.",
     instruction=f"""
         You are a friendly grammar helper for kids.  Analyze the following text,
@@ -166,7 +168,7 @@ simple_math_agent = Agent(
     tools=[add, subtract, multiply, divide],
 )
 
-agent_math_advanced_instruction = '''
+agent_math_advanced_instruction = """
 I am an advanced math agent. I handle user query in the below steps:
 
 1. I shall analyse the chat log to understand current question and make a math formula for it.
@@ -188,7 +190,7 @@ I am an advanced math agent. I handle user query in the below steps:
 <think>There is a single number, so it is the final answer.</think>
 <output>The result of "(3+5) * 7 - 4" is 52</output>
 </example>
-'''
+"""
 
 agent_math_advanced = Agent(
     model=MODEL,
@@ -209,10 +211,10 @@ agent_math_advanced = Agent(
     generate_content_config=types.GenerateContentConfig(temperature=0.2),
 )
 
-from google.adk.tools.tool_context import ToolContext
 
 def exit_loop(tool_context: ToolContext):
-  tool_context.actions.escalate = True
+    tool_context.actions.escalate = True
+
 
 agent_checker = Agent(
     model=MODEL,
@@ -238,7 +240,7 @@ agent_checker = Agent(
     5. Otherwise, say "Thanks for the question! I'll let grammar and math agent to help you!". Do not call any tools in this case.
 
     """,
-    tools=[exit_loop]
+    tools=[exit_loop],
 )
 
 agent_extractor = Agent(
@@ -252,7 +254,6 @@ agent_extractor = Agent(
     input_schema=OutputSchema,
 )
 
-from google.adk.agents.loop_agent import LoopAgent
 
 agent_teaching_assistant_loop = LoopAgent(
     name="agent_teaching_assistant_loop",

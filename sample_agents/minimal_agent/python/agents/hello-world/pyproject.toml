@@ -1,0 +1,16 @@
+[project]
+name = "hello-world"
+version = "0.1.0"
+description = "A minimal test agent for ASP local@ verification."
+authors = [
+    { name = "Gemini CLI", email = "gemini-cli@example.com" },
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "google-adk>=1.27.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

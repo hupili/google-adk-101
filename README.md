@@ -11,6 +11,12 @@ Notebooks:
 2. Deploy to Agent Engine
 3. Build Deep Research
 
+## Study: Agent Starter Pack (ASP)
+
+Walkthrough of deploying a minimal agent using the Agent Starter Pack (ASP).
+
+- [ASP Local Deployment & UV Index Configuration](./study/agent-starter-pack/README.md)
+
 ## Wishlist
 
 - Agent Engine Memory Bank. ( [apply for allowlist here](https://docs.google.com/forms/d/e/1FAIpQLSe6Qn0rQKK9Qa-zOzHI0YSmero9yXPb1ideJFtGXFqpvQL2sA/viewform) )
